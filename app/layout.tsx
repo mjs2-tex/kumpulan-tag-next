@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from 'next/image';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,7 +28,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="relative h-screen w-screen overflow-hidden flex items-center justify-center">
+              {/* 1. Background Image Full Screen */}
+              <Image
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" // Ganti dengan path image kamu
+                alt="Background"
+                fill
+                priority
+                className="object-cover"
+              />
+        
+              {/* 2. Overlay (Opsional: Agar form lebih terbaca) */}
+              <div className="absolute inset-0 bg-black/30"></div>
         {children}
+        </div>
       </body>
     </html>
   );
