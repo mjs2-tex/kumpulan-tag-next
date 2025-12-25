@@ -40,6 +40,7 @@ export async function GET(request: Request) {
         INNER JOIN product_attribute_value AS f
         ON e.color_id = f.id
         WHERE d.name =  $1
+        AND a.grade_id NOT IN (3, 24)
     `;
 
         const { rows } = await pool.query(query, [inspectId]);

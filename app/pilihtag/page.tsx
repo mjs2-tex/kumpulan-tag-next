@@ -23,7 +23,8 @@ const PilihtagContent = () => {
                 <CardTag
                     title="AFQ"
                     subTitle="Daily Habits & Tips"
-                    imageUrl="https://images.unsplash.com/photo-1511764904403-9df25824981a"
+                    imageUrl="/afq.jpeg"
+                    urlSite={`/pilihtag/afq?production_name=${productionName}`}
                 />
                 <CardTag
                     title="Nature"
