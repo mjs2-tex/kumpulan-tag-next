@@ -32,19 +32,19 @@ export const printLabels = async (items: any[]) => {
     /* ================= HEADER ================= */
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
-    doc.text(String(item.no_piece), 35, 40);
+    doc.text(String(item.no_piece), 35, 38);
 
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
-    doc.text(item.warna_produk, 35, 60);
+    doc.text(item.warna_produk, 35, 60 -2);
 
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
-    doc.text(String(item.quantity), 35, 70);
+    doc.text(String(item.quantity), 35, 70 -2);
 
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
-    doc.text(String(parseFloat(item.quantity) * 0.9144), 60 , 70);
+    doc.text(String(parseFloat(item.quantity) * 0.9144), 60 , 70 -2);
 
   });
 
