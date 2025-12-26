@@ -122,10 +122,11 @@ const TagCrudGrid = () => {
   /* =========================
      TABLE INSTANCE
   ========================= */
-  const filteredData = useMemo(() =>
-    items.filter((item: any) => item.grade_id !== 3),
-    [items]
-  );
+  const filteredData = useMemo(() => {
+    return items.filter((item: any) =>
+      item.grade_id !== 3 && item.quantity >= 15
+    );
+  }, [items]);
 
   const table = useReactTable({
     data: filteredData, // ⬅️ Gunakan data yang sudah difilter
