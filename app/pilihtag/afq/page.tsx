@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { printLabels } from './PrintLabels';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -49,7 +49,7 @@ const TagCrudGrid = () => {
 
     const fetchData = async () => {
       try {
-        const res = await axios.get('/api/produksi-inspect', {
+        const res = await axios.get('/api/inspect-afq', {
           params: { production_name: productionName },
           timeout: 5000,
         });
@@ -77,7 +77,7 @@ const TagCrudGrid = () => {
   const columns: ColumnDef<ItemData>[] = [
     {
       header: 'No',
-      cell: ({ row }) => row.index + 1,
+      cell: ({ row }) => row.original.no_piece,
     },
     {
       header: 'Color',
@@ -122,14 +122,19 @@ const TagCrudGrid = () => {
   /* =========================
      TABLE INSTANCE
   ========================= */
+  const filteredData = useMemo(() =>
+    items.filter((item: any) => item.grade_id !== 3),
+    [items]
+  );
+
   const table = useReactTable({
-    data: items,
+    data: filteredData, // ⬅️ Gunakan data yang sudah difilter
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {
       pagination: {
-        pageSize: 5, // ⬅️ jumlah baris per halaman
+        pageSize: 5,
       },
     },
   });
@@ -221,7 +226,7 @@ const TagCrudGrid = () => {
         </Link>
 
         <button
-          onClick={() => printLabels(items)}
+          onClick={() => printLabels(filteredData)}
           className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg"
         >
           Print Data
@@ -232,11 +237,11 @@ const TagCrudGrid = () => {
 }
 
 const Page = () => {
-    return (
-        <Suspense fallback={<div className="text-white">Loading...</div>}>
-            <TagCrudGrid />
-        </Suspense>
-    )
+  return (
+    <Suspense fallback={<div className="text-white">Loading...</div>}>
+      <TagCrudGrid />
+    </Suspense>
+  )
 }
 
 export default Page
