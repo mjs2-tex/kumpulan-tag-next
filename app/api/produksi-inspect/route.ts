@@ -41,6 +41,7 @@ export async function GET(request: Request) {
         ON e.color_id = f.id
         WHERE d.name =  $1
         AND a.grade_id NOT IN (3, 24)
+        ORDER By a."id"
     `;
 
         const { rows } = await pool.query(query, [inspectId]);
