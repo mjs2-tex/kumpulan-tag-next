@@ -45,9 +45,14 @@ export async function GET(request: Request) {
 
         const { rows } = await pool.query(query, [inspectId]);
 
+        const mod = rows.map((item, index) => ({
+            ...item,
+            no_piece: index + 1,
+        }));
+
         return NextResponse.json({
             success: true,
-            data: rows,
+            data: mod,
         });
     } catch (error: any) {
         console.error("DB ERROR:", error);
