@@ -44,7 +44,7 @@ export const printLabels = async (items: any[]) => {
 
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
-    doc.text((Math.ceil(parseFloat(item.quantity) * 0.9144 * 100) / 100).toFixed(2), 63 - 1 , 70.5);
+    doc.text((Math.floor(parseFloat(item.quantity) * 0.9144 * 100) / 100).toFixed(2), 63 - 1 , 70.5);
 
   });
 
