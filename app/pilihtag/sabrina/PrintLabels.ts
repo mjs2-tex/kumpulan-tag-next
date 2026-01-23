@@ -56,7 +56,7 @@ export const printLabels = async (items: any[]) => {
         2: { cellWidth: 15, halign: "center" },
       },
       body: [
-        ["PI NO", "PM-022", "LOT NO"],
+        ["PI NO", "PM-014", "LOT NO"],
         ["ITEM", "24009#", "LOT 1"],
         ["COL", (item.warna_produk || "").toUpperCase(), "ROLL"],
         ["LENGTH", item.quantity || "0", item.no_piece || "0"],
