@@ -36,6 +36,12 @@ export const printLabels = async (items: any[]) => {
     doc.text("SABRINA", 30, 7.8, { align: "center" });
 
     /* ================= TABLE ================= */
+    // Proses pembersihan warna sebelum masuk ke tabel
+    const cleanColor = (item.warna_produk || "")
+      .split("(")[0] // Ambil teks sebelum kurung buka
+      .trim()        // Buang spasi di awal/akhir
+      .toUpperCase(); // Pastikan huruf besar semua
+
     autoTable(doc, {
       startY: 10,
       margin: { left: marginX, right: marginX },
@@ -58,7 +64,7 @@ export const printLabels = async (items: any[]) => {
       body: [
         ["PI NO", "PM-014", "LOT NO"],
         ["ITEM", "24009#", "LOT 1"],
-        ["COL", (item.warna_produk || "").toUpperCase(), "ROLL"],
+        ["COL", cleanColor, "ROLL"], // Menggunakan variabel cleanColor yang sudah dikondisikan
         ["LENGTH", item.quantity || "0", item.no_piece || "0"],
       ],
     });
