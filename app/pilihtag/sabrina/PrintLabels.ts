@@ -63,7 +63,7 @@ export const printLabels = async (items: any[]) => {
       },
       body: [
         ["PI NO", "PM-014", "LOT NO"],
-        ["ITEM", "24009#", "LOT 1"],
+        ["ITEM", "24009#", item.no_lot_custom || "LOT 1"],
         ["COL", cleanColor, "ROLL"], // Menggunakan variabel cleanColor yang sudah dikondisikan
         ["LENGTH", item.quantity || "0", item.no_piece || "0"],
       ],

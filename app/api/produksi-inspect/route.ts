@@ -23,6 +23,7 @@ export async function GET(request: Request) {
         a.no_piece, 
         a.quantity,
         e.color_id,
+        e.keterangan as no_lot_custom,
 
         COALESCE(NULLIF(e.warna_custom, ''), f.name) AS warna_produk,
 
